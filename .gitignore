@@ -1,0 +1,6 @@
+.env
+docs/
+embeddings.npy
+chunks.json
+.idea/
+__pycache__/

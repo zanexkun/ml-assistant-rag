@@ -1,0 +1,5 @@
+wikipedia-api
+sentence-transformers
+numpy
+groq
+python-dotenv
