@@ -66,7 +66,7 @@ python fetch_wiki.py      # downloads the articles
 python build_index.py     # chunks and embeds, saves the index
 ```
 
-Put your Groq key in a `.env` file:
+Put your Groq key in a `.env` file (see `.env.example`):
 
 ```
 GROQ_API_KEY=your_key_here
@@ -77,6 +77,32 @@ Then ask anything:
 ```bash
 python ask.py "why do deep networks suffer from vanishing gradients?"
 ```
+
+## Run with Docker
+
+Requires Docker and a free Groq API key.
+
+1. Copy `.env.example` to a new file named `.env` and put your key in it:
+
+```
+   GROQ_API_KEY=your_key_here
+```
+
+2. Build the image:
+
+```
+   docker build -t rag .
+```
+
+   The build fetches the Wikipedia articles and builds the index inside the image, so the first build takes a while. Later builds reuse cached layers.
+
+3. Ask a question:
+
+```
+   docker run --env-file .env rag "what is overfitting"
+```
+
+The image uses the CPU build of PyTorch to stay small, and the API key is passed at run time so it is never stored in the image.
 
 ## Limitations
 
